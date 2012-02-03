@@ -17,8 +17,6 @@
 ;  'browse-kill-ring+
 ;  'bbdb
 ;  'gnuplot
-;  'muse-mode
-;  'w3m-load
 ;  'rect-mark
 ;  'multi-term
 ;  'lusty-explorer
