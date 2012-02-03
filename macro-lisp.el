@@ -1,3 +1,5 @@
+;; -*- Emacs-Lisp -*-
+
 ;; * require-extensions
 (defun require-extensions (action lst)
   "require plugins of list
@@ -38,12 +40,12 @@ See also `def-keys'."
 (defun eval-body (body)
   "eval form like ((some-func) (some-func1))"
   (dolist (body-part body)
-    (eval body)))
+    (eval body-part)))
 
 (defun daemon-run (&rest body)
   "run func `after-make-frame-functions' if emacs in daemon mode
 
-\(fn 'any-func [some-args])"
+\(fn (origin form))"
   (if (and (fboundp 'daemonp) (daemonp))
       (add-hook 'after-make-frame-functions
                 (lambda (frame)
@@ -94,4 +96,4 @@ See also `def-keys'."
 
 ;(def-keys "C-#" (do-if-region 'eval-region 'eval-last-sexp))
 
-(provide 'macroFunc)
+(provide 'macro-lisp)
