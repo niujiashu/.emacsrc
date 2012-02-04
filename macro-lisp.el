@@ -37,21 +37,21 @@ See also `def-keys'."
 ;;      (apply ,func ',args)))
 
 ;; 真是讨厌 Elisp 不支持闭包啊……
-(defun eval-body (body)
-  "eval form like ((some-func) (some-func1))"
-  (dolist (body-part body)
-    (eval body-part)))
+(defmacro eval-body (form-list)
+  "eval form like ((form1) (form2))"
+  (dolist (form form-list)
+    (eval 'form)))
 
-(defun daemon-run (&rest body)
+(defmacro daemon-run (&rest body)
   "run func `after-make-frame-functions' if emacs in daemon mode
 
 \(fn (origin form))"
   (if (and (fboundp 'daemonp) (daemonp))
-      (add-hook 'after-make-frame-functions
+      `(add-hook 'after-make-frame-functions
                 (lambda (frame)
                   (with-selected-frame frame
-                    (eval-body body))))
-    (eval-body body)))
+                    (eval-body ,body))))
+    `(eval-body ,body)))
 
 ;; 如果是有 region 则执行函数1，否则执行函数2
 ;; TODO: 完成这个
