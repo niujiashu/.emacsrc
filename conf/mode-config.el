@@ -8,8 +8,7 @@
 (tool-bar-mode nil)
 
 ;; 光标不闪，不恍花眼睛
-;; (daemon-run )
-(daemon-run (blink-cursor-mode nil))
+(daemon-run '(blink-cursor-mode nil))
 (transient-mark-mode t)
 
 ;;括号匹配时显示另外一边的括号，而不是烦人的跳到另一个括号。

@@ -1,6 +1,8 @@
 ;; * tabbar
-(require 'tabbar)  
+(require 'tabbar)
 (daemon-run (tabbar-mode t))
+;; (tabbar-mode t)
+;(macroexpand (daemon-run (setq tabbar-mode t)))
 
 ;; * face
 (custom-set-variables
@@ -16,19 +18,15 @@
 
 (defmacro tabbar-customize-faces-macro (foreground background sforeground sbackground uforeground ubackground)
 `(custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- '(tabbar-button-face ((t (:inherit tabbar-default-face))))
- '(tabbar-default-face ((((class color grayscale) (background dark)) (:background ,background :foreground ,foreground :height 1.0))))
- '(tabbar-selected-face ((t (:inherit tabbar-default-face :background ,sbackground :foreground ,sforeground))))
- '(tabbar-separator-face ((t (:inherit tabbar-default-face :height 0.5))))
- '(tabbar-unselected-face ((t (:inherit tabbar-default-face :background ,ubackground :foreground ,uforeground)))))
+  '(tabbar-button-face ((t (:inherit tabbar-default-face))))
+  '(tabbar-default-face ((((class color grayscale) (background dark)) (:background ,background :foreground ,foreground :height 1.0))))
+  '(tabbar-selected-face ((t (:inherit tabbar-default-face :background ,sbackground :foreground ,sforeground))))
+  '(tabbar-separator-face ((t (:inherit tabbar-default-face :height 0.5))))
+  '(tabbar-unselected-face ((t (:inherit tabbar-default-face :background ,ubackground :foreground ,uforeground)))))
 )
 
 (tabbar-customize-faces-macro
- "gray50" ; foregroundlet*
+ "gray50" ; foreground
  "gray15" ; background
  "gray60" ; selected foreground
  "gray25" ; selected background

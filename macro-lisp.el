@@ -2,7 +2,7 @@
 
 ;; * require-extensions
 (defun require-extensions (action lst)
-  "require plugins of list
+  "`require' plugins of list
 
 \(fn 'require '(aaa bbb ccc ...))"
   (mapcar (lambda(ext)
@@ -21,79 +21,65 @@ See also `def-keys'."
     (dolist (key-def key-defs)
       (if (listp key-def)
           (funcall def-key (car key-def) (nth 1 key-def))
-          (when (not (eq group nil))
+          (unless (null group) 
                 (funcall def-key key-def group))))))
 
+(defun eval-body (forms)
+  (if (listp forms)
+      (dolist (form forms)
+        (eval form))
+    (eval forms)))
+
 ;; 如果是在 emacs-daemon 下，则在 after-make-frame-functions 事件后运行函数
-;; (defmacro daemon-run (func &rest args)
-;;   "run func `after-make-frame-functions' if emacs in daemon mode
+(defun daemon-run (&rest body)
+  "run func `after-make-frame-functions' if emacs daemon
 
-;; \(fn 'any-func [some-args])"
-;;   `(if (and (fboundp 'daemonp) (daemonp))
-;;       (add-hook 'after-make-frame-functions
-;;                 (lambda (frame)
-;;                   (with-selected-frame frame
-;;                     (apply ,func ',args))))
-;;      (apply ,func ',args)))
+\(fn (origin-form) (another-form) ...)"
+    (if (and (fboundp 'daemonp) (daemonp))
+        (add-hook 'after-make-frame-functions
+                         (lambda (frame)
+                           (with-selected-frame frame
+                             (eval-body body))))
+      (eval-body body)))
 
-;; 真是讨厌 Elisp 不支持闭包啊……
-(defmacro eval-body (form-list)
-  "eval form like ((form1) (form2))"
-  (dolist (form form-list)
-    (eval 'form)))
+;; (eval '(tabbar-mode t))
+;; (daemon-run '(tabbar-mode nil))
+;; (let ((body '(tabbar-mode t)))
+;;   (message "%s" `(add-hook 'after-make-frame-functions
+;;                           (lambda (frame)
+;;                             (with-selected-frame frame
+;;                               (eval ,body))))))
 
-(defmacro daemon-run (&rest body)
-  "run func `after-make-frame-functions' if emacs in daemon mode
+;; 定义一个函数，如果表达式执行为真，则执行函数1，否则执行函数2
+(defmacro do-if (exp if-do else-do &optional func-name)
+  "defun a function eval if-do if exp is true else eval else-do,
+default function name is \"if-do\"-or-\"else-do\"
 
-\(fn (origin form))"
-  (if (and (fboundp 'daemonp) (daemonp))
-      `(add-hook 'after-make-frame-functions
-                (lambda (frame)
-                  (with-selected-frame frame
-                    (eval-body ,body))))
-    `(eval-body ,body)))
+\(fn exp 'if-do 'else-do [\"function-name\"])"
+  (let ((if-do-name (symbol-name (eval if-do)))
+        (else-do-name (symbol-name (eval else-do))))
+    (let ((func-result-name (if (null func-name) 
+                                (am-intern (concat if-do-name "-or-" else-do-name))
+                              (intern func-name))))
+      `(defun ,func-result-name ()
+         ,(concat "if "  " than eval `" if-do-name "', else eval `" else-do-name "'")
+         (interactive)
+         (if (eval ,exp)
+             (call-interactively ,if-do)
+             (call-interactively ,else-do))))))
 
-;; 如果是有 region 则执行函数1，否则执行函数2
-;; TODO: 完成这个
-;; (defmacro do-if-region (if-do &optional else-do)
-;;   `(defun ,(am-intern if-do "-or-" else-do) ()
-;;      ,(concat "if `mark-actice' than run `" 'if-do "', else run `" 'else-do "'")
-;;      (interactive)
-;;      (if mark-active
-;;          (call-interactively ',if-do)
-;;          (when (not (null else-do))
-;;                (call-interactively ',else-do)))))
+;; (let ((exp '(and (fboundp 'daemonp) (daemonp))))
+;;   (message "%s" exp))
 
-;; (macroexpand (do-if-region kill-region backward-kill-word))
-;; (message "%s" (concat "show" kill-region))
-
-;; (defun do-if-region (if-do &optional else-do)
-;;   "if `mark-active' than run if-do, else run else-do"
-;;   (interactive)
-;;   (if mark-active
-;;       (call-interactively if-do)
-;;       (if (not (null else-do))
-;;           (call-interactively else-do))))
-
-;; (defun am-intern (&rest strings)
-;;   "`intern' use STRINGS."
-;;   (intern
-;;    (apply
-;;     'concat
-;;     (mapcar
-;;      (lambda (element)
-;;        (if (stringp element) element (symbol-name element)))
-;;      strings))))
-
-;(am-intern "just-" `("test1" "test2"))
-;(message "%s" )
-
-;; (defmacro do-if-region (if-do else-do)
-;;   `(interactive)
-;;   `(if mark-active
-;;        (call-interactively ,if-do)
-;;        (call-interactively ,else-do)))
-
-;(def-keys "C-#" (do-if-region 'eval-region 'eval-last-sexp))
+(defun am-intern (&rest strings)
+  "`intern' use STRINGS. from dea"
+  (intern 
+   (apply 
+    'concat 
+    (mapcar (lambda (element)
+              (if (stringp element) 
+                  element 
+                (symbol-name element)))
+            strings))))
 
 (provide 'macro-lisp)

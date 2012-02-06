@@ -6,7 +6,7 @@
 * TODO [[file:conf/global-setting.el][Global setting]] [0/1]
 ** TODO 还是更喜欢 YaHei Consoles
 * TODO Emacs lisp [0/5]
-** TODO daemon-run 函数无法搞定 (blink-cursor-mode nil)
+** TODO daemon-run 函数无法搞定 (tabber-mode t)
 ** TODO 一个“有 mark 时执行代码1,没有是执行代码2”的宏或者函数
 ** TODO M-w 如果 region 则拷贝 region，如果 lisp-mode ，则拷贝当前 sexp ，否则拷贝当前行
 ** TODO DEA 中提到，CUA 中有矩阵区域操作模式，了解一下是否类似 Vim 中的 C-V

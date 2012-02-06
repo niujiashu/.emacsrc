@@ -6,7 +6,9 @@
 ;; 全局设定
 (define-keys global-map
   `(;; C+w 绑定为：如果有标记则删除标记（C-@），如果没有则向前删除一词
-    ("C-w" backward-kill-word-or-kill-region)
+    ("C-w" kill-region-or-backward-word)
+    ;; C-c C-e : 如果有标记则执行标记，否则执行最近的 S 表达式
+    ("C-c C-e" eval-region-or-last-sexp)
     ;; 将 M+x 绑定为 C+x C+m 与 C+c C+m
     ("C-x C-u" undo)
     ;; 设置 C+x C+u 为 Undo
@@ -28,13 +30,11 @@
   ;; ;; 习惯设置，打开／关闭菜单
   ;; [f12] 'menu-bar-mode
 
+;; 选择区域的时候执行命令1，否则命令2
+(do-if (symbol-value mark-active) 'kill-region 'backward-kill-word "kill-region-or-backward-word")
+(do-if (symbol-value mark-active) 'eval-region 'eval-last-sexp "eval-region-or-last-sexp")
 ;; 在 deamon 模式时 delete-frame ,在普通模式时 save-buffers-kill-emacs
-(defun delete-frame-or-kill-emacs ()
-  "delete-frame if deamon mode, else save-buffers-kill-emacs"
-  (interactive)
-  (if (and (fboundp 'daemonp) (daemonp))
-    (delete-frame) 
-    (save-buffers-kill-emacs)))
+(do-if (and (fboundp 'daemonp) (daemonp)) 'delete-frame 'save-buffers-kill-emacs "kill-current-emacs")
 
 ;; 跳转到对应标点
 (defun match-paren (arg)
@@ -47,21 +47,6 @@
          (backward-sexp) 
          (forward-char))
         (t (self-insert-command (or arg 1)))))
-
-;; * backward-kill-word-or-kill-region ;; 选择区域的时候删除区域，否则回删单词
-(defun backward-kill-word-or-kill-region ()
-  "选择区域时删除区域，否则删除单词"
-  (interactive)
-  (if mark-active
-      (call-interactively 'kill-region)
-      (call-interactively 'backward-kill-word)))
-
-(defun eval-region-or-eval-last-sexp ()
-  "选择区域时执行选择的代码，否则执行最近 S 表达式"
-  (interactive)
-  (if mark-active
-      (call-interactively 'eval-region)
-      (call-interactively 'eval-last-sexp)))
 
 ;; copy lines
 (defun copy-lines(&optional arg) 
