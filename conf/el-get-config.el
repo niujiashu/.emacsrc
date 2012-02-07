@@ -29,6 +29,7 @@
       buffer-move ; 方便的移动 buffer
       undo-tree ; undo tree
       org-mode ; 我还是希望能够用上最新版本的 org-mode
+      sr-speedbar ; 让 speedbar 显示在 frame 而不是另外出现一个窗口
 
       ;; project manager
       magit ; git 支持

@@ -6,9 +6,9 @@
 ;; 全局设定
 (define-keys global-map
   `(;; C+w 绑定为：如果有标记则删除标记（C-@），如果没有则向前删除一词
-    ("C-w" kill-region-or-backward-word)
+    ("C-w" kill-region-or-backward-kill-word)
     ;; C-c C-e : 如果有标记则执行标记，否则执行最近的 S 表达式
-    ("C-c C-e" eval-region-or-last-sexp)
+    ("C-c C-e" eval-region-or-eval-last-sexp)
     ;; 将 M+x 绑定为 C+x C+m 与 C+c C+m
     ("C-x C-u" undo)
     ;; 设置 C+x C+u 为 Undo
@@ -20,7 +20,7 @@
     ;; C-% 跳转到对应标点
     ("C-%" match-paren)
     ;; C-x C-c 在 deamon 模式时 delete-frame ,在普通模式时 save-buffers-kill-emacs
-    ("C-x C-c" delete-frame-or-kill-emacs)
+    ("C-x C-c" kill-current-emacs)
 ))
 
   ;; ;; home and end key
@@ -31,10 +31,14 @@
   ;; [f12] 'menu-bar-mode
 
 ;; 选择区域的时候执行命令1，否则命令2
-(do-if (symbol-value mark-active) 'kill-region 'backward-kill-word "kill-region-or-backward-word")
-(do-if (symbol-value mark-active) 'eval-region 'eval-last-sexp "eval-region-or-last-sexp")
+(do-if-region 'kill-region 'backward-kill-word)
+(do-if-region 'eval-region 'eval-last-sexp)
+
 ;; 在 deamon 模式时 delete-frame ,在普通模式时 save-buffers-kill-emacs
-(do-if (and (fboundp 'daemonp) (daemonp)) 'delete-frame 'save-buffers-kill-emacs "kill-current-emacs")
+(do-if (and (fboundp 'daemonp) (daemonp)) 
+       'delete-frame 
+       'save-buffers-kill-emacs 
+       "kill-current-emacs")
 
 ;; 跳转到对应标点
 (defun match-paren (arg)

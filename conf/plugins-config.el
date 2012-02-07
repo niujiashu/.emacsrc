@@ -82,6 +82,11 @@
               (load-file (concat emacs-rcdir "themes/color-theme-dhyana.el"))
               (color-theme-dhyana)))
 
+    (:name sr-speedbar
+     :after (lambda ()
+              (defalias 'sb 'sr-speedbar-toggle)
+              (sr-speedbar-toggle)))
+
 ))
 
 ;; eldoc

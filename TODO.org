@@ -1,16 +1,14 @@
-* TODO Daemon [0/2]
-** TODO tabbar-mode 需要手动开启
-** TODO 光标不会不闪（应该是load frame）的问题
-* TODO [[file:conf/kbd-setting.el][kbd setting]] [0/1]
-** TODO def-keys 的类似 [home] 这样的按键的处理
 * TODO [[file:conf/global-setting.el][Global setting]] [0/1]
 ** TODO 还是更喜欢 YaHei Consoles
-* TODO Emacs lisp [0/5]
-** TODO daemon-run 函数无法搞定 (tabber-mode t)
-** TODO 一个“有 mark 时执行代码1,没有是执行代码2”的宏或者函数
-** TODO M-w 如果 region 则拷贝 region，如果 lisp-mode ，则拷贝当前 sexp ，否则拷贝当前行
-** TODO DEA 中提到，CUA 中有矩阵区域操作模式，了解一下是否类似 Vim 中的 C-V
+* TODO [[file:conf/kbd-setting.el][kbd setting]] [0/1]
+** TODO def-keys 的类似 [home] 这样的按键的处理
+* TODO Emacs lisp [2/6]
+** TODO daemon-run 函数无法搞定 (tabber-mode t) 在 daemon 下启动 Emacs 会报错
 ** TODO daemon-run 无法搞定类似 (setq initial-frame-alist '((top . 2) (left . 10) (width . 85) (height . 50))) 的代码
+** TODO DEA 中提到，CUA 中有矩阵区域操作模式，了解一下是否类似 Vim 中的 C-V
+** TODO 弄明白 Elisp 中的 (format) 函数
+** DONE 一个“有 mark 时执行代码1,没有是执行代码2”的宏或者函数
+** DONE M-w 如果 region 则拷贝 region，如果 lisp-mode ，则拷贝当前 sexp ，否则拷贝当前行
 * TODO Plugins [0/4]
 ** TODO 类似 Vim 的 Quickfix 插件
 ** TODO intapaper reader
@@ -19,5 +17,4 @@
 * TODO Theme [0/1]
 ** TODO 解决当前主题 [[file:themes/color-theme-dhyana.el][dhyana]] 有些深色字体无法在 tty 下看见的问题
 
-
-* 当前 Emacs PID：578
+* 当前 Emacs PID：12773
