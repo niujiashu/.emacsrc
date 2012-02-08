@@ -24,32 +24,6 @@ See also `def-keys'."
           (unless (null group) 
                 (funcall def-key key-def group))))))
 
-(defun eval-body (forms)
-  (if (listp forms)
-      (dolist (form forms)
-        (eval form))
-    (eval forms)))
-
-;; 如果是在 emacs-daemon 下，则在 after-make-frame-functions 事件后运行函数
-(defun daemon-run (&rest body)
-  "run func `after-make-frame-functions' if emacs daemon
-
-\(fn (origin-form) (another-form) ...)"
-    (if (and (fboundp 'daemonp) (daemonp))
-        (add-hook 'after-make-frame-functions
-                         (lambda (frame)
-                           (with-selected-frame frame
-                             (eval-body body))))
-      (eval-body body)))
-
-;; (eval '(tabbar-mode t))
-;; (daemon-run '(tabbar-mode nil))
-;; (let ((body '(tabbar-mode t)))
-;;   (message "%s" `(add-hook 'after-make-frame-functions
-;;                           (lambda (frame)
-;;                             (with-selected-frame frame
-;;                               (eval ,body))))))
-
 ;; 定义一个函数，如果表达式执行为真，则执行函数1，否则执行函数2
 (defmacro do-if (exp if-do else-do &optional func-name)
   "defun a function eval if-do if exp is true else eval else-do,
@@ -85,5 +59,24 @@ See also `do-if'
                   element 
                 (symbol-name element)))
             strings))))
+
+(defun eval-body (forms)
+  (when (listp forms)
+    (if (functionp (car forms))
+        (eval-body (eval forms))
+      (dolist (form forms)
+        (eval-body form)))))
+
+;; 如果是在 emacs-daemon 下，则在 after-make-frame-functions 事件后运行函数
+(defmacro daemon-run (&rest body)
+  "run func `after-make-frame-functions' if emacs daemon
+
+\(fn (origin-form) (another-form) ...)"
+  `(if (and (fboundp 'daemonp) (daemonp))
+       (add-hook 'after-make-frame-functions
+                 (lambda (frame)
+                   (with-selected-frame frame
+                     (eval-body ',body))))
+     (eval-body ',body)))
 
 (provide 'macro-lisp)

@@ -53,7 +53,7 @@
         (t (self-insert-command (or arg 1)))))
 
 ;; copy lines
-(defun copy-lines(&optional arg) 
+(defun copy-lines (&optional arg) 
   "复制当前行"
   (interactive "p") 
   (save-excursion 

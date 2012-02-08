@@ -33,7 +33,6 @@
   '(
     (:name highlight-parentheses 
      :after (lambda ()
-              ;; 高亮光标周围所有配对的括号
               (define-globalized-minor-mode global-highlight-parentheses-mode
                 highlight-parentheses-mode
                 (lambda ()

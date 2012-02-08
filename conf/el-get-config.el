@@ -51,12 +51,19 @@
       ;; coding
       slime ; Superior List Interaction Mode for Emacs
       ac-slime ; slime 补全
-      ac-python ; Python 补全
       auto-complete-emacs-lisp ; Elisp 补全
       paredit ; 为了对付 Lisp 代码中无处不在的括号
       clojure-mode ; clojure 支持
       swank-clojure ; 让 slime 支持 clojure
       durendal ; A bucket of Emacs tricks for Clojure
+
+      ;; Python
+      ;ipython ; ipython support to python-mode
+      ac-python ; Python 补全
+      python-mode ; major mode for python
+      python-pep8 ; minor mode for running `pep8'
+      virtualenv ; Virtualenv for Python
+      ropemacs ; minor mode for using rope python refactoring library in emacs
 
       ;; mark language
       mustache-mode ; Mustache 模板语言支持

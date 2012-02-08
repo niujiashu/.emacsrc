@@ -31,7 +31,7 @@
     ;;                   (font-spec :family "YaHei Consoles Hybird" :size 9)))
 ;(set-fontset-font)
 ;; )
-(daemon-run '(frame-setting))
+(daemon-run (frame-setting))
 
 ;;关闭起动时的那个“开机画面”。
 (setq inhibit-startup-message t)
