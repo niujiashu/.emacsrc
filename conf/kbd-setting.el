@@ -27,7 +27,7 @@
     ([home] beginning-of-buffer)
     ([end] end-of-buffer)
     ;; 习惯设置，打开／关闭菜单
-    [f12] menu-bar-mode
+    ([f12] menu-bar-mode)
 ))
 
 ;; 选择区域的时候执行命令1，否则命令2

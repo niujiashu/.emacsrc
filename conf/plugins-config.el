@@ -51,10 +51,13 @@
 
     (:name buffer-move
      :after (lambda ()
-              (global-set-key (kbd "<C-S-up>")     'buf-move-up)
-              (global-set-key (kbd "<C-S-down>")   'buf-move-down)
-              (global-set-key (kbd "<C-S-left>")   'buf-move-left)
-              (global-set-key (kbd "<C-S-right>")  'buf-move-right)))
+              (define-keys global-map 
+                `(
+                  ([C-S-up]     buf-move-up)
+                  ([C-S-down]   buf-move-down)
+                  ([C-S-left]   buf-move-left)
+                  ([C-S-right]  buf-move-right)
+             ))))
 
     (:name yasnippet 
      :after (lambda ()

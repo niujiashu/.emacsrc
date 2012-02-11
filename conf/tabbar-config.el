@@ -44,23 +44,21 @@
 ))
 
 ;; * group rules
-;;(defun tabbar-buffer-groups ()
-;;  (lambda () 
-;;  (list
-   ;; (cond
-    ;; ((member (buffer-name) '("*shell*" "*sdcv*" "*scratch*")) '("User Buffer"))
-    ;; ((string-equal "*eshell*" (substring (buffer-name) 0 8)) '("User Buffer"))
-    ;; ((string-equal "*shell*" (substring (buffer-name) 0 7)) '("User Buffer"))
-    ;; ((string-equal "*" (substring (buffer-name) 0 1)) '("Emacs Buffer"))
-    ;; ((or (string-equal "emacs" (substring (buffer-name) 1 6))
-    ;;      (string-equal init-dir (substring (buffer-name) 0 (length init-dir) t))) 
-    ;;  '("Configuration"))
-    ;; (t '("User Buffer"))
-   ;; )
-;;   "All"
-;;  )
-;;  )
-;;)
-;;(setq tabbar-buffer-groups-function 'tabbar-buffer-groups)
+(defun tabbar-buffer-groups (buffer)
+  "自定义的 tabbar 分组策略"
+  (with-current-buffer (get-buffer buffer)
+    (cond
+     ((or (get-buffer-process (current-buffer))
+          (memq major-mode
+                '(comint-mode compilation-mode)))
+      '("Process"))
+     ((memq major-mode '(help-mode apropos-mode Info-mode Man-mode)) '("Help"))
+     ((or (member (buffer-name) '("*scratch*" "*Messages*"))
+          (string-equal "*" (substring (buffer-name) 0 1))
+          (memq major-mode '(dired-mode)))
+      '("Emacs Buffer"))
+     ((or (member (buffer-name) '("*scratch*"))) '("User Buffer"))
+     (t '("User Buffer")))))
+(setq tabbar-buffer-groups-function 'tabbar-buffer-groups)
 
 (provide 'tabbar-config)
