@@ -16,21 +16,19 @@
 (setq user-mail-address "bolasblac.k [at] gmail")
 
 ;; 设置字体
-;; Setting English Font
-;; (set-face-attribute
-;;   'default nil :font "Monaco 9")
-
-;; Chinese Font
 (defun frame-setting ()
+  ;; Setting English Font
+  ;;(set-face-attribute 'default nil :font "YaHei Consoles Hybird 9")
+  ;; Chinese Font
   (set-frame-font "文泉驿等宽微米黑 9")
   (set-fontset-font "fontset-default"
-  	      'gb18030 '("文泉驿等宽微米黑" . "unicode-bmp")))
+                    'gb18030 '("文泉驿等宽微米黑" . "unicode-bmp"))
   ;; (dolist (charset '(kana han symbol cjk-misc bopomofo))
-    ;; (set-fontset-font (frame-parameter nil 'font)
-    ;;                   charset
-    ;;                   (font-spec :family "YaHei Consoles Hybird" :size 9)))
-;(set-fontset-font)
-;; )
+  ;;   (set-fontset-font (frame-parameter nil 'font)
+  ;;                     charset
+  ;;                     (font-spec :family "YaHei Consoles Hybird" :size 9)))
+  )
+
 (daemon-run (frame-setting))
 
 ;;关闭起动时的那个“开机画面”。
@@ -47,6 +45,7 @@
 ;(global-set-key (kbd "C-SPC")'nil)
 
 ;; 设置窗口的初始大小
+;;(daemon-run )
 (setq initial-frame-alist '((top . 2) (left . 10) (width . 85) (height . 50)))
 
 ;;关闭烦人的出错时的提示声。

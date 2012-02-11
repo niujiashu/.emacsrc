@@ -16,8 +16,10 @@
 \(define-keys global-map '(\"a\" (\"C-a\" 'some-command)) 'group-command)
 
 See also `def-keys'."
-  (let ((def-key (lambda (key func-or-command)
-                   (define-key keymap (eval `(kbd ,key)) func-or-command))))
+  (let ((def-key (lambda (key-obj func-or-command)
+                   (let ((key (cond ((eq (type-of key-obj) (type-of [home])) key-obj)
+                                    (t (eval `(kbd ,key-obj))))))
+                     (define-key keymap key func-or-command)))))
     (dolist (key-def key-defs)
       (if (listp key-def)
           (funcall def-key (car key-def) (nth 1 key-def))
@@ -72,11 +74,25 @@ See also `do-if'
   "run func `after-make-frame-functions' if emacs daemon
 
 \(fn (origin-form) (another-form) ...)"
+  `(message "daemon-running")
   `(if (and (fboundp 'daemonp) (daemonp))
        (add-hook 'after-make-frame-functions
                  (lambda (frame)
                    (with-selected-frame frame
                      (eval-body ',body))))
      (eval-body ',body)))
+
+;; (print (macroexpand '(daemon-run (blink-cursor-mode nil))))
+
+;; (eval-body '((blink-cursor-mode nil)))
+;; (print (macroexpand '(eval-body '((blink-cursor-mode nil)))))
+;; (print (macroexpand '(eval-body (blink-cursor-mode nil))))
+
+;; (listp '(blink-cursor-mode nil))
+;; (car '(blink-cursor-mode nil))
+
+;; (daemon-run (blink-cursor-mode nil))
+;; (eval (blink-cursor-mode nil))
+;; (listp (car '(blink-cursor-mode nil)))
 
 (provide 'macro-lisp)

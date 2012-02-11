@@ -83,8 +83,7 @@
 
     (:name sr-speedbar
      :after (lambda ()
-              (defalias 'sb 'sr-speedbar-toggle)
-              (sr-speedbar-toggle)))
+              (defalias 'sb 'sr-speedbar-toggle)))
 
 ))
 

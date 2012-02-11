@@ -21,14 +21,14 @@
     ("C-%" match-paren)
     ;; C-x C-c 在 deamon 模式时 delete-frame ,在普通模式时 save-buffers-kill-emacs
     ("C-x C-c" kill-current-emacs)
+    ;; C-x C-d 删除整行
+    ("C-x C-d" kill-whole-line)
+    ;; home and end key
+    ([home] beginning-of-buffer)
+    ([end] end-of-buffer)
+    ;; 习惯设置，打开／关闭菜单
+    [f12] menu-bar-mode
 ))
-
-  ;; ;; home and end key
-  ;; [home] 'beginning-of-buffer
-  ;; [end] 'end-of-buffer
-
-  ;; ;; 习惯设置，打开／关闭菜单
-  ;; [f12] 'menu-bar-mode
 
 ;; 选择区域的时候执行命令1，否则命令2
 (do-if-region 'kill-region 'backward-kill-word)
