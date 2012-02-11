@@ -1,8 +1,9 @@
 * TODO [[file:conf/global-setting.el][Global setting]] [0/1]
 ** TODO 还是更喜欢 YaHei Consoles
-* TODO Emacs lisp [4/7]
+* TODO Emacs lisp [4/8]
 ** TODO 明明不该有问题的，为什么 daemon-run 依旧无法搞定 (daemon-run (blink-cursor-mode nil))
 ** TODO daemon-run 无法搞定类似 (setq initial-frame-alist '((top . 2) (left . 10) (width . 85) (height . 50))) 的代码
+** TODO TODO.org 在王纯业的 desktop 载入后，会出现 Wrong type argument: stringp, nil 错误
 ** TODO DEA 中提到，CUA 中有矩阵区域操作模式，了解一下是否类似 Vim 中的 C-V
 ** DONE tabbar tab group function
 ** DONE 一个“有 mark 时执行代码1,没有是执行代码2”的宏或者函数
