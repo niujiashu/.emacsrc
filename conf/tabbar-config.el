@@ -52,7 +52,7 @@
           (memq major-mode
                 '(comint-mode compilation-mode)))
       '("Process"))
-     ((string-equal "*magit" (substring (buffer-name) 0 5)) '("Magit"))
+     ((string-equal "*magit" (substring (buffer-name) 0 6)) '("Magit"))
      ((memq major-mode '(help-mode apropos-mode Info-mode Man-mode)) '("Help"))
      ((member (buffer-name) '("*scratch*")) '("User"))
      ((string-equal "*" (substring (buffer-name) 0 1)) '("Common"))
