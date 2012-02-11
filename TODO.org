@@ -18,4 +18,3 @@
 ** TODO google translate
 * TODO Theme [0/1]
 ** TODO 解决当前主题 [[file:themes/color-theme-dhyana.el][dhyana]] 有些深色字体无法在 tty 下看见的问题
-
