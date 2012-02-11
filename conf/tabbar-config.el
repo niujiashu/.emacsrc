@@ -52,6 +52,13 @@
           (memq major-mode
                 '(comint-mode compilation-mode)))
       '("Process"))
+<<<<<<< HEAD
+     ((string-equal "magit" (substring (buffer-name) 0 5)) '("Magit"))
+     ((memq major-mode '(help-mode apropos-mode Info-mode Man-mode)) '("Help"))
+     ((string-equal "*" (substring (buffer-name) 0 1)) '("Emacs"))
+     ((member (buffer-name) '("*scratch*")) '("User"))
+     (t '("User")))))
+=======
      ((memq major-mode '(help-mode apropos-mode Info-mode Man-mode)) '("Help"))
      ((or (member (buffer-name) '("*scratch*" "*Messages*"))
           (string-equal "*" (substring (buffer-name) 0 1))
@@ -59,6 +66,7 @@
       '("Emacs Buffer"))
      ((or (member (buffer-name) '("*scratch*"))) '("User Buffer"))
      (t '("User Buffer")))))
+>>>>>>> 4d08df8... 搞定了自定义 tabbar 分组策略
 (setq tabbar-buffer-groups-function 'tabbar-buffer-groups)
 
 (provide 'tabbar-config)
