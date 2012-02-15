@@ -8,10 +8,12 @@
   'window-numbering
   ;; Change cursor smartly
   'cursor-change
-  ;; 我 hack 过的 eldoc
+  ;; 我做过一点小 hack 的 eldoc
   'eldoc
   ;; 王纯业 的 desktop
   'wcy-desktop
+  ;; face
+  'face-config
 ;  'thing-edit
 ;  'second-sel
 ;  'browse-kill-ring+
@@ -87,6 +89,15 @@
     (:name sr-speedbar
      :after (lambda ()
               (defalias 'sb 'sr-speedbar-toggle)))
+
+    (:name coffee-mode
+     :after (lambda ()
+              (define-keys coffee-mode-map
+                `(
+                  ("M-R" coffee-compile-region)
+                  ("M-r" coffee-compile-buffer)
+                  ("C-M-r" coffee-repl)
+              ))))
 
 ))
 

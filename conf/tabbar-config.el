@@ -1,21 +1,15 @@
 ;; * tabbar
 (require 'tabbar)
 (daemon-run (tabbar-mode t))
-;; (tabbar-mode t)
-;(macroexpand (daemon-run (setq tabbar-mode t)))
 
-;; * face
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
  '(tabbar-home-button (quote (("[o]") "[X]")))
  '(tabbar-scroll-left-button (quote ((" <") " =")))
  '(tabbar-scroll-right-button (quote ((" >") " =")))
  '(tabbar-separator (quote (0.5)))
  '(tabbar-use-images nil))
 
+;; * face
 (defmacro tabbar-customize-faces-macro (foreground background sforeground sbackground uforeground ubackground)
 `(custom-set-faces
   '(tabbar-button-face ((t (:inherit tabbar-default-face))))
@@ -48,12 +42,7 @@
   "自定义的 tabbar 分组策略"
   (with-current-buffer (get-buffer buffer)
     (cond
-     ((or (get-buffer-process (current-buffer))
-          (memq major-mode
-                '(comint-mode compilation-mode)))
-      '("Process"))
      ((string-equal "*magit" (substring (buffer-name) 0 6)) '("Magit"))
-     ((memq major-mode '(help-mode apropos-mode Info-mode Man-mode)) '("Help"))
      ((member (buffer-name) '("*scratch*")) '("User"))
      ((string-equal "*" (substring (buffer-name) 0 1)) '("Common"))
      (t '("User")))))

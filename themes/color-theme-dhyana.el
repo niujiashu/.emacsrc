@@ -11,7 +11,7 @@
       ;; (mouse-color . "SteelBlue")
      )
 
-     ;;{{{ 看名字好像能明白意思的部分
+     
      ;; (border ((t (:background "black"))))
      ;; (cursor ((t (:background "SteelBlue"))))
      ;; (mouse ((t (:background "SteelBlue"))))
@@ -34,7 +34,7 @@
        :weight normal 
        :width semi-condensed 
        :family "misc-fixed"))))
-     ;;}}}
+     
 
 
      ;; 选中的部分
@@ -51,7 +51,7 @@
      (italic ((t (:italic t :slant italic))))
      (underline ((t (:underline t))))
 
-     ;;{{{ 关键字
+     
      ; 内建函数、类
      (font-lock-builtin-face ((t (:foreground "#729fcf"))))
      ; 定义的函数名
@@ -84,9 +84,9 @@
      ; 正则
      (font-lock-regexp-grouping-backslash ((t (:bold t :weight bold))))
      (font-lock-regexp-grouping-construct ((t (:bold t :weight bold))))
-     ;;}}}
+     
 
-     ;;{{{ 状态栏
+     
      ; 激活状态 buffer 的 mode line
      (mode-line ((t (:foreground "#e0e0e0" :background "#363946"))))
      ; 非激活状态的 buffer 的 mode line
@@ -100,15 +100,15 @@
      ; 可点击的部分
      (mode-line-mousable ((t (:foreground "#e0e0e0" :background "#363946"))))
      (mode-line-mousable-minor-mode ((t (:foreground "#e0e0e0" :background "#363946"))))
-     ;;}}}
+     
 
-     ;;{{{ minibuffer
+     
      ; 强调的部分
      (minibuffer-noticeable-prompt ((t (:foreground "#777"))))
      (minibuffer-prompt ((t (:foreground "#777"))))
-     ;;}}}
+     
 
-     ;;{{{ 不知道的部分
+     
      (fixed-pitch ((t (:family "courier"))))
      (header-line ((t (:family "neep" :width condensed :box (:line-width 1 :style none) :background "grey20" :foreground "grey90" :box nil))))
      (primary-selection ((t (:background "blue3"))))
@@ -150,9 +150,9 @@
      ;;  (list-matching-lines-face . bold)
      ;;  (view-highlight-face . highlight)
      ;;  (widget-mouse-face . highlight))
-     ;;}}}
+     
 
-     ;; ;;{{{ gnus
+     
      (gnus-group-mail-1-empty-face ((t (:foreground "aquamarine1"))))
      (gnus-group-mail-1-face ((t (:bold t :foreground "aquamarine1" :weight bold))))
      (gnus-group-mail-2-empty-face ((t (:foreground "aquamarine2"))))
@@ -193,9 +193,9 @@
      (gnus-summary-selected-face ((t (:underline t))))
 
      (gnus-splash-face ((t (:foreground "Brown"))))
-     ;; ;;}}}
+     
 
-     ;; ;;{{{ erc
+     
      (erc-action-face ((t (:bold t :weight bold))))
      (erc-bold-face ((t (:bold t :weight bold))))
      (erc-dangerous-host-face ((t (:foreground "red"))))
@@ -245,8 +245,15 @@
      (bg:erc-color-face13 ((t (:background "deeppink"))))
      (bg:erc-color-face14 ((t (:background "gray50"))))
      (bg:erc-color-face15 ((t (:background "gray90"))))
-     ;;}}}
-
+     
+     
+     ;; rst level face (inherit outline)
+     (rst-level-1-face ((t (:inherit font-lock-function-name-face))))
+     (rst-level-2-face ((t (:inherit font-lock-variable-name-face))))
+     (rst-level-3-face ((t (:inherit font-lock-keyword-face))))
+     (rst-level-4-face ((t (:inherit font-lock-comment-face))))
+     (rst-level-5-face ((t (:inherit font-lock-type-face))))
+     (rst-level-6-face ((t (:inherit font-lock-constant-face))))
 )))
 
 (provide 'color-theme-dhyana)

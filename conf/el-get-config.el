@@ -30,6 +30,7 @@
       undo-tree ; undo tree
       org-mode ; 我还是希望能够用上最新版本的 org-mode
       sr-speedbar ; 让 speedbar 显示在 frame 而不是另外出现一个窗口
+      ;;vimpulse ; 为 Emacs 增加 Vim 的有用特性，比如可视模式
 
       ;; project manager
       magit ; git 支持
@@ -72,7 +73,7 @@
       ;rst-mode ; rst 标记语言支持， Emacs 23 内置
 
       ;; theme
-      color-theme-zen-and-art
+      ;; color-theme-zen-and-art
 
       ;; other
       erc ; irc 客户端
