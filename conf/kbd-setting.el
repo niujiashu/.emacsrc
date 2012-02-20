@@ -23,6 +23,10 @@
     ("C-x C-c" kill-current-emacs)
     ;; C-x C-d 删除整行
     ("C-x C-d" kill-whole-line)
+    ;; 删除到行头
+    ("C-S-k" kill-to-beginning)
+    ;; 删除缩进
+    ([C-S-iso-lefttab] kill-indent)
     ;; home and end key
     ([home] beginning-of-buffer)
     ([end] end-of-buffer)
@@ -40,22 +44,35 @@
        'save-buffers-kill-emacs 
        "kill-current-emacs")
 
-;; 跳转到对应标点
+(defun kill-indent (old-pos)
+  "kill indent of current line"
+  (interactive "d")
+  (back-to-indentation)
+  (let* ((pos (point))
+         (delta-pos (- old-pos pos)))
+    (kill-to-beginning pos)
+    (forward-char delta-pos)))
+
+(defun kill-to-beginning (pos)
+  "kill to the beginning of line"
+  (interactive "d")
+  (beginning-of-line)
+  (delete-region pos (point)))
+
 (defun match-paren (arg)
-  "Press % to jump to matching paren"
+  "jump to matching paren"
   (interactive "p")
   (cond ((or (backward-char) (looking-at "[([{]") (forward-char))
          (forward-sexp))
-        ((or (backward-char) (looking-at "[])}]") (forward-char)) 
+        ((or (backward-char) (looking-at "[)]}]") (forward-char)) 
          (forward-char) 
          (backward-sexp) 
          (forward-char))
         (t (self-insert-command (or arg 1)))))
 
-;; copy lines
 (defun copy-lines (&optional arg) 
-  "复制当前行"
-  (interactive "p") 
+  "copy the whole line"
+  (interactive "p")
   (save-excursion 
     (beginning-of-line) 
     (set-mark (point)) 

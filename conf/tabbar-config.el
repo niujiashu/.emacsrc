@@ -45,6 +45,7 @@
      ((string-equal "*magit" (substring (buffer-name) 0 6)) '("Magit"))
      ((member (buffer-name) '("*scratch*")) '("User"))
      ((string-equal "*" (substring (buffer-name) 0 1)) '("Common"))
+     ((or (string-equal ".org" (substring (buffer-name) -4)) (eq major-mode 'org-mode)) '("Org"))
      (t '("User")))))
 
 (setq tabbar-buffer-groups-function 'tabbar-buffer-groups)

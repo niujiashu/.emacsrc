@@ -254,6 +254,9 @@
      (rst-level-4-face ((t (:inherit font-lock-comment-face))))
      (rst-level-5-face ((t (:inherit font-lock-type-face))))
      (rst-level-6-face ((t (:inherit font-lock-constant-face))))
+
+     ;; org-mode 
+     (org-hide ((t (:foreground "#202020"))))
 )))
 
 (provide 'color-theme-dhyana)
