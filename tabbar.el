@@ -881,6 +881,9 @@ That command calls `tabbar-help-on-tab-function' with TAB."
 
   )
 
+(defvar tabbar-around-current-tab-left "")
+(defvar tabbar-around-current-tab-right "")
+
 (defun tabbar-line-element (tab)
   "Return an `header-line-format' template element from TAB.
 Call `tabbar-tab-label-function' to obtain a label for TAB."
@@ -899,12 +902,16 @@ Call `tabbar-tab-label-function' to obtain a label for TAB."
     (define-key keymap [header-line down-mouse-3] 'ignore)
     (define-key keymap [header-line mouse-3] select)
     ;; Return the tab followed by a separator.
-    (list (propertize label 'local-map keymap 'help-echo help
-                      'face (if (tabbar-selected-p
-                                 tab(tabbar-current-tabset))
+    (list (propertize 
+           (if (tabbar-selected-p tab (tabbar-current-tabset))
+               (concat tabbar-around-current-tab-left label " " tabbar-around-current-tab-right)
+             label)
+           'local-map keymap 'help-echo help
+                      'face (if (tabbar-selected-p tab (tabbar-current-tabset))
                                 'tabbar-selected-face
                               'tabbar-unselected-face))
-          tabbar-separator-value)))
+          tabbar-separator-value)
+))
 
 (defun tabbar-line ()
   "Return the header line templates that represent the tab bar.
@@ -963,8 +970,8 @@ If optional argument BACKWARD is non-nil, cycle to the previous tab
 instead.
 The scope of the cyclic navigation through tabs is specified by the
 option `tabbar-cycling-scope'."
-  (let ((tabset (tabbar-current-tabset t))
-        selected tab)
+  (let* ((tabset (tabbar-current-tabset t))
+         selected tab)
     (when tabset
       (setq selected (tabbar-selected-tab tabset))
       (cond
@@ -1285,7 +1292,7 @@ Return the the first group where the current buffer is."
 Must be a valid `header-line-format' template element."
   (if tabbar-buffer-group-mode
       (format "[%s]" (tabbar-tab-tabset tab))
-    (format " %s " (tabbar-tab-value tab))))
+    (format " %s" (tabbar-tab-value tab))))
 
 (defun tabbar-buffer-help-on-tab (tab)
   "Return the help string shown when mouse is onto TAB."

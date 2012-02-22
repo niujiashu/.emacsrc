@@ -9,6 +9,10 @@
  '(tabbar-separator (quote (0.5)))
  '(tabbar-use-images nil))
 
+;; the symbol around active tab
+(setq tabbar-around-current-tab-left "[")
+(setq tabbar-around-current-tab-right "]")
+
 ;; * face
 (defmacro tabbar-customize-faces-macro (foreground background sforeground sbackground uforeground ubackground)
 `(custom-set-faces
@@ -19,14 +23,15 @@
   '(tabbar-unselected-face ((t (:inherit tabbar-default-face :background ,ubackground :foreground ,uforeground)))))
 )
 
-(tabbar-customize-faces-macro
- "gray50" ; foreground
- "gray15" ; background
- "gray60" ; selected foreground
- "gray25" ; selected background
- "gray50" ; unselected foreground
- "gray15" ; unselected background
-)
+;; can custom tabber face
+;; (tabbar-customize-faces-macro
+;;  "gray50" ; foreground
+;;  "gray15" ; background
+;;  "gray60" ; selected foreground
+;;  "gray25" ; selected background
+;;  "gray50" ; unselected foreground
+;;  "gray15" ; unselected background
+;; )
 
 ;; * tabber 快捷键设置
 (define-keys global-map
@@ -45,7 +50,9 @@
      ((string-equal "*magit" (substring (buffer-name) 0 6)) '("Magit"))
      ((member (buffer-name) '("*scratch*")) '("User"))
      ((string-equal "*" (substring (buffer-name) 0 1)) '("Common"))
-     ((or (string-equal ".org" (substring (buffer-name) -4)) (eq major-mode 'org-mode)) '("Org"))
+     ((or (string-equal ".org" (substring (buffer-name) -4))
+          (eq major-mode 'org-mode)) 
+      '("Org"))
      (t '("User")))))
 
 (setq tabbar-buffer-groups-function 'tabbar-buffer-groups)

@@ -4,13 +4,12 @@
   (color-theme-install
    '(color-theme-dhyana
      ((background-mode . dark)
-      (background-color . "#202020")
+      (background-color . "gray15")
       (foreground-color . "#e0e0e0")
-      (border-color . "#202020")
+      (border-color . "gray15")
       (cursor-color . "#a3e3ed")
       ;; (mouse-color . "SteelBlue")
      )
-
      
      ;; (border ((t (:background "black"))))
      ;; (cursor ((t (:background "SteelBlue"))))
@@ -34,14 +33,12 @@
        :weight normal 
        :width semi-condensed 
        :family "misc-fixed"))))
-     
-
 
      ;; 选中的部分
      (region ((t (:background "#364458"))))
 
      ;; 和背景色类似，但是在背景无法企及的地方，比如行号和文件内容之间的颜色
-     (fringe ((t (:background "#202020"))))
+     (fringe ((t (:background "gray15"))))
 
      ;; 高亮
      (highlight ((t (:background "#66ffff"))))
@@ -256,7 +253,14 @@
      (rst-level-6-face ((t (:inherit font-lock-constant-face))))
 
      ;; org-mode 
-     (org-hide ((t (:foreground "#202020"))))
+     (org-hide ((t (:foreground "gray15"))))
+
+     ;; tabbar
+     (tabbar-button-face ((t (:inherit tabbar-default-face))))
+     (tabbar-default-face ((((class color grayscale) (background dark)) (:background "gray15" :foreground "gray50" :height 1.0))))
+     (tabbar-selected-face (((t (:inherit (tabbar-default-face))))))
+     (tabbar-separator-face ((t (:inherit tabbar-default-face :height 0.5))))
+     (tabbar-unselected-face ((t (:inherit tabbar-default-face))))
 )))
 
 (provide 'color-theme-dhyana)
