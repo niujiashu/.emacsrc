@@ -30,6 +30,7 @@
       undo-tree ; undo tree
       org-mode ; 我还是希望能够用上最新版本的 org-mode
       sr-speedbar ; 让 speedbar 显示在 frame 而不是另外出现一个窗口
+      multi-web-mode ; 多个 major mode
       ;;vimpulse ; 为 Emacs 增加 Vim 的有用特性，比如可视模式
 
       ;; project manager
@@ -48,8 +49,9 @@
       auto-complete-css ; CSS 补全
       coffee-mode ; CoffeeScirpt 支持
       js2-mode ; JavaScirpt 支持
+      flymake-html-validator ; html validator
 
-      ;; coding
+      ;; Lisp
       slime ; Superior List Interaction Mode for Emacs
       ac-slime ; slime 补全
       auto-complete-emacs-lisp ; Elisp 补全
@@ -72,9 +74,6 @@
       yaml-mode ; Yaml 标记语言支持
       ;rst-mode ; rst 标记语言支持， Emacs 23 内置
 
-      ;; theme
-      ;; color-theme-zen-and-art
-
       ;; other
       erc ; irc 客户端
       gist ; 创建 gist
@@ -83,6 +82,7 @@
       erc-highlight-nicknames ; irc 客户端的昵称高亮
       emacs-w3m ; w3m
       mingus ; MPD 前端
+      pkgbuild-mode ; PKGBUILD file support
     )
     (mapcar 'el-get-source-name el-get-sources)
   )

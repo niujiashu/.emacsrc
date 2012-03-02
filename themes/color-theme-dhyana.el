@@ -258,8 +258,8 @@
      ;; tabbar
      (tabbar-button-face ((t (:inherit tabbar-default-face))))
      (tabbar-default-face ((((class color grayscale) (background dark)) (:background "gray15" :foreground "gray50" :height 1.0))))
-     (tabbar-selected-face (((t (:inherit (tabbar-default-face))))))
-     (tabbar-separator-face ((t (:inherit tabbar-default-face :height 0.5))))
+     (tabbar-selected-face ((t (:inherit tabbar-default-face :foreground "gray80"))))
+     (tabbar-separator-face ((t (:inherit tabbar-default-face))))
      (tabbar-unselected-face ((t (:inherit tabbar-default-face))))
 )))
 

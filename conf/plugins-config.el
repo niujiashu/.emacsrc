@@ -14,6 +14,8 @@
   'wcy-desktop
   ;; face
   'face-config
+  ;; 
+  'eval-after-load
 ;  'thing-edit
 ;  'second-sel
 ;  'browse-kill-ring+
@@ -64,7 +66,10 @@
     (:name yasnippet 
      :after (lambda ()
               (yas/initialize)
-              (yas/load-directory (concat el-get-dir "yasnippet/snippets"))))
+              (yas/load-directory (concat el-get-dir "yasnippet/snippets"))
+              ;; (cons
+              ;;                           (concat emacs-rcdir "snippets")))
+              (yas/global-mode 1)))
 
     (:name emacs-w3m
      :after (lambda ()
@@ -98,6 +103,15 @@
                   ("M-r" coffee-compile-buffer)
                   ("C-M-r" coffee-repl)
               ))))
+    
+    (:name multi-web-mode
+     :after (lambda ()
+              (setq mweb-default-major-mode 'html-mode)
+              (setq mweb-tags '(;;(php-mode "<\\?php\\|<\\? \\|<\\?=" "\\?>")
+                                (js-mode "<script +\\(type=\"text/javascript\"\\|language=\"javascript\"\\)[^>]*>" "</script>")
+                                (css-mode "<style +type=\"text/css\"[^>]*>" "</style>")))
+              (setq mweb-filename-extensions '("htm" "html" "jsp"))
+              (multi-web-global-mode 1)))
 
 ))
 
