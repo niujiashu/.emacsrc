@@ -108,10 +108,9 @@
      :after (lambda ()
               (setq mweb-default-major-mode 'html-mode)
               (setq mweb-tags '(;;(php-mode "<\\?php\\|<\\? \\|<\\?=" "\\?>")
-                                (js-mode "<script +\\(type=\"text/javascript\"\\|language=\"javascript\"\\)[^>]*>" "</script>")
-                                (css-mode "<style +type=\"text/css\"[^>]*>" "</style>")))
-              (setq mweb-filename-extensions '("htm" "html" "jsp"))
-              (multi-web-global-mode 1)))
+                                (js-mode "<script[\\( +\\)\\(type=\"text/javascript\"\\|language=\"javascript\"\\)]*[^>]*>" "</script>")
+                                (css-mode "<style[\\( +type=\"text/css\"\\)]*[^>]*>" "</style>")))
+              (setq mweb-filename-extensions '("htm" "html" "jsp"))))
 
 ))
 

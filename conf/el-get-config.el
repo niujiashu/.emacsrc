@@ -49,7 +49,6 @@
       auto-complete-css ; CSS 补全
       coffee-mode ; CoffeeScirpt 支持
       js2-mode ; JavaScirpt 支持
-      flymake-html-validator ; html validator
 
       ;; Lisp
       slime ; Superior List Interaction Mode for Emacs
