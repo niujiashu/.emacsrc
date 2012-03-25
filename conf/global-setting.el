@@ -42,7 +42,7 @@
 (put 'LaTeX-hide-environment 'disabled nil)
 
 ;;Ctrl+Space无效
-;(global-set-key (kbd "C-SPC")'nil)
+(global-set-key (kbd "C-SPC")'nil)
 
 ;; 设置窗口的初始大小
 ;;(daemon-run )

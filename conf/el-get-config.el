@@ -67,6 +67,16 @@
       virtualenv ; Virtualenv for Python
       ropemacs ; minor mode for using rope python refactoring library in emacs
 
+      ;; Ruby
+      Enhanced-Ruby-Mode ; for ruby 1.9
+      auto-complete-ruby ; auto complete for ruby
+      flymake-ruby ; flymake
+      rails-el ; for editing Ruby On Rails code
+      ri-emacs ; Ruby ri help inside emacs
+      ruby-block ; Highlight matching block
+      ruby-end ; Emacs minor mode for automatic insertion of end blocks for Ruby
+      rinari ; Rinari Is Not A Rails IDE
+
       ;; mark language
       mustache-mode ; Mustache 模板语言支持
       markdown-mode ; Markdown 标记语言支持
