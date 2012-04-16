@@ -81,12 +81,10 @@
       mustache-mode ; Mustache 模板语言支持
       markdown-mode ; Markdown 标记语言支持
       yaml-mode ; Yaml 标记语言支持
-      ;rst-mode ; rst 标记语言支持， Emacs 23 内置
 
       ;; other
       erc ; irc 客户端
       gist ; 创建 gist
-      g-client ; Google 服务客户端
       weblogger-el ; wordpress 本地客户端
       erc-highlight-nicknames ; irc 客户端的昵称高亮
       emacs-w3m ; w3m
