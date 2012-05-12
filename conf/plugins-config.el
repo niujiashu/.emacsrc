@@ -16,12 +16,13 @@
   'face-config
   ;; 
   'eval-after-load
+  ;; 形象化矩形操作区域
+  'rect-mark
 ;  'thing-edit
 ;  'second-sel
 ;  'browse-kill-ring+
 ;  'bbdb
 ;  'gnuplot
-;  'rect-mark
 ;  'multi-term
 ;  'lusty-explorer
 ;  'oddmuse

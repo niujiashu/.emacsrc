@@ -83,9 +83,9 @@
 
       ;; other
       erc ; irc 客户端
+      erc-highlight-nicknames ; irc 客户端的昵称高亮
       gist ; 创建 gist
       weblogger-el ; wordpress 本地客户端
-      erc-highlight-nicknames ; irc 客户端的昵称高亮
       emacs-w3m ; w3m
       mingus ; MPD 前端
       pkgbuild-mode ; PKGBUILD file support
