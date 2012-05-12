@@ -32,6 +32,14 @@
     ([end] end-of-buffer)
     ;; 习惯设置，打开／关闭菜单
     ([f12] menu-bar-mode)
+    ;; 中断当前行在上方开新行且自动缩进
+    ("M-RET" newline-and-indent)
+    ;; 中断当前行在下方开新行且自动缩进
+    ("M-S-RET" open-line)
+    ;; 在上方开一个新行并缩进
+    ("C-S-o" open-prev-line)
+    ;; 在下方开一个新行并缩进
+    ("C-o" open-next-line)
 ))
 
 ;; 选择区域的时候执行命令1，否则命令2
@@ -43,6 +51,43 @@
        'delete-frame 
        'save-buffers-kill-emacs 
        "kill-current-emacs")
+
+(defun open-next-line ()
+  "Insert a newline"
+  (interactive)
+  (end-of-line)
+  (newline)
+  (indent-for-tab-command))
+
+(defun open-prev-line ()
+  "Insert a newline"
+  (interactive)
+  (beginning-of-line)
+  (newline)
+  (forward-line -1)
+  (indent-for-tab-command))
+
+(defun open-line (n)
+  "Insert a newline and leave point before it.
+If there is a fill prefix and/or a `left-margin', insert them
+on the new line if the line would have been blank.
+With arg N, insert N newlines."
+  (interactive "*p")
+  (let* ((do-fill-prefix (and fill-prefix (bolp)))
+	 (do-left-margin (and (bolp) (> (current-left-margin) 0)))
+	 (loc (point))
+	 ;; Don't expand an abbrev before point.
+	 (abbrev-mode nil))
+    (newline n)
+    (goto-char loc)
+    (while (> n 0)
+      (cond ((bolp)
+	     (if do-left-margin (indent-to (current-left-margin)))
+	     (if do-fill-prefix (insert-and-inherit fill-prefix))))
+      (forward-line 1)
+      (setq n (1- n)))
+    (goto-char loc)
+    (end-of-line)))
 
 (defun kill-indent (old-pos)
   "kill indent of current line"

@@ -75,7 +75,6 @@
       ri-emacs ; Ruby ri help inside emacs
       ruby-block ; Highlight matching block
       ruby-end ; Emacs minor mode for automatic insertion of end blocks for Ruby
-      rinari ; Rinari Is Not A Rails IDE
 
       ;; mark language
       mustache-mode ; Mustache 模板语言支持
