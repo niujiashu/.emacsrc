@@ -37,7 +37,7 @@
 (setq el-get-sources
   '(
     (:name highlight-parentheses 
-     :after (lambda ()
+     :after (progn
               (define-globalized-minor-mode global-highlight-parentheses-mode
                 highlight-parentheses-mode
                 (lambda ()
@@ -45,17 +45,25 @@
               (global-highlight-parentheses-mode t)))
 
     (:name paredit
-     :after (lambda ()
+     :after (progn
               (add-hook 'emacs-lisp-mode-hook
-                      (lambda () 
+                      (lambda ()
                         (paredit-mode t)))))
 
-    (:name undo-tree
-     :after (lambda ()
-              (global-undo-tree-mode)))
+    ;; (:name undo-tree
+    ;;  :type git
+    ;;  :url "https://github.com/emacsmirror/undo-tree.git"
+    ;;  :prepare (progn
+    ;;             (autoload 'undo-tree-mode "undo-tree.el"
+    ;;               "Undo tree mode; see undo-tree.el for details" t)
+    ;;             (autoload 'global-undo-tree-mode "undo-tree.el"
+    ;;               "Global undo tree mode" t))
+    ;;  :after (progn
+    ;;           (lambda ()
+    ;;             (global-undo-tree-mode))))
 
     (:name buffer-move
-     :after (lambda ()
+     :after (progn
               (define-keys global-map 
                 `(
                   ([C-S-up]     buf-move-up)
@@ -64,16 +72,14 @@
                   ([C-S-right]  buf-move-right)
              ))))
 
-    (:name yasnippet 
-     :after (lambda ()
+    (:name yasnippet
+     :after (progn
               (yas/initialize)
-              (yas/load-directory (concat el-get-dir "yasnippet/snippets"))
-              ;; (cons
-              ;;                           (concat emacs-rcdir "snippets")))
+              (yas/load-directory (concat rc-dir "snippets"))
               (yas/global-mode 1)))
 
     (:name emacs-w3m
-     :after (lambda ()
+     :after (progn
               (eval-after-load 'w3m
                 '(progn
                    (setq w3m-default-display-inline-images t)
@@ -82,22 +88,22 @@
                    (setq w3m-use-title-buffer-name t)))))
 
     (:name slime
-     :after (lambda ()
+     :after (progn
               (setq inferior-lisp-program "sbcl")
               (require 'slime-autoloads)
               (slime-setup)))
 
-    (:name color-theme
-     :after (lambda ()
-              (load-file (concat emacs-rcdir "themes/color-theme-dhyana.el"))
-              (color-theme-dhyana)))
+    ;; (:name color-theme
+    ;;  :after (progn
+    ;;           (load-file (concat rc-dir "themes/dhyana-theme.el"))
+    ;;           (color-theme-dhyana)))
 
-    (:name sr-speedbar
-     :after (lambda ()
-              (defalias 'sb 'sr-speedbar-toggle)))
+    ;; (:name sr-speedbar
+    ;;  :after (progn
+    ;;           (defalias 'sb 'sr-speedbar-toggle)))
 
     (:name coffee-mode
-     :after (lambda ()
+     :after (progn
               (define-keys coffee-mode-map
                 `(
                   ("M-R" coffee-compile-region)
@@ -105,13 +111,13 @@
                   ("C-M-r" coffee-repl)
               ))))
     
-    (:name multi-web-mode
-     :after (lambda ()
-              (setq mweb-default-major-mode 'html-mode)
-              (setq mweb-tags '(;;(php-mode "<\\?php\\|<\\? \\|<\\?=" "\\?>")
-                                (js-mode "<script[\\( +\\)\\(type=\"text/javascript\"\\|language=\"javascript\"\\)]*[^>]*>" "</script>")
-                                (css-mode "<style[\\( +type=\"text/css\"\\)]*[^>]*>" "</style>")))
-              (setq mweb-filename-extensions '("htm" "html" "jsp"))))
+    ;; (:name multi-web-mode
+    ;;  :after (progn
+    ;;           (setq mweb-default-major-mode 'html-mode)
+    ;;           (setq mweb-tags '(;;(php-mode "<\\?php\\|<\\? \\|<\\?=" "\\?>")
+    ;;                             (js-mode "<script[\\( +\\)\\(type=\"text/javascript\"\\|language=\"javascript\"\\)]*[^>]*>" "</script>")
+    ;;                             (css-mode "<style[\\( +type=\"text/css\"\\)]*[^>]*>" "</style>")))
+    ;;           (setq mweb-filename-extensions '("htm" "html" "jsp"))))
 
 ))
 
@@ -130,8 +136,6 @@
 
 ;; eldoc
 (setq eldoc-echo-area-use-multiline-p t)
-(custom-set-faces
- '(eldoc-highlight-function-argument ((t (:inherit bold :foreground "green3")))))
 
 ;; wcy-desktop-setting
 (wcy-desktop-init)

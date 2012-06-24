@@ -12,7 +12,7 @@
 (setq x-select-enable-clipboard t)
 
 ;; 用户信息
-(setq user-full-name "Yicuan")
+(setq user-full-name "c4605")
 (setq user-mail-address "bolasblac.k [at] gmail")
 
 ;; 设置字体
@@ -79,16 +79,6 @@
 ;;set the default file path
 (setq default-directory "~/")
 
-;; 中文设置
-(setq gnus-default-charset 'cn-gb-2312
-      gnus-group-name-charset-group-alist '((".*" . gb2312))
-      gnus-summary-show-article-charset-alist '((1 . cn-gb-2312) 
-                                                (2 . big5) 
-                                                (3 . chinese-gbk) 
-                                                (4 . utf-8))
-      gnus-newsgroup-ignored-charsets '(unknown-8bit x-unknown iso-8859-1)
-      gnus-group-posting-charset-alist '((".*" gb2312 (gb2312))))
-;(define-coding-system-alias 'utf-8 'gb2312 'gb18030)
 ;; 设置中文语言环境
 (set-language-environment 'Chinese-GB)
 ;;写文件的编码方式

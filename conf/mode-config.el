@@ -5,10 +5,14 @@
 
 ;;;; 外观
 ;; 没有 toolbar
-(tool-bar-mode nil)
+(tool-bar-mode t)
+
+;; 没有 menubar,用 f12 呼出
+(menu-bar-mode nil)
 
 ;; 光标不闪，不恍花眼睛
-(daemon-run (blink-cursor-mode nil))
+;; (daemon-run )
+(blink-cursor-mode nil)
 (transient-mark-mode t)
 
 ;;括号匹配时显示另外一边的括号，而不是烦人的跳到另一个括号。
@@ -21,11 +25,8 @@
 ;;显示列号
 (setq column-number-mode t)
 
-;; 没有滚动条
-(scroll-bar-mode nil)
-
-;; 没有 menubar,用 f12 呼出
-(menu-bar-mode nil)
+;; 没有滚动条 24.1
+(set-scroll-bar-mode nil)
 
 ;; number window 给 buffer 上所有窗口编号
 (window-numbering-mode t)
@@ -42,7 +43,7 @@
 
 ;;;; 其他
 ;; folding
-(folding-mode t)
+;; (folding-mode t)
 
 ;; 自动闭合标点
 (enclose-global-mode t)

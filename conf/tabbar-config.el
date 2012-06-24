@@ -6,7 +6,7 @@
  '(tabbar-home-button (quote (("[o]") "[X]")))
  '(tabbar-scroll-left-button (quote ((" <") " =")))
  '(tabbar-scroll-right-button (quote ((" >") " =")))
- '(tabbar-separator (quote (0.5)))
+; '(tabbar-separator (quote (0.5)))
  '(tabbar-use-images nil))
 
 ;; the symbol around active tab
@@ -24,14 +24,14 @@
 )
 
 ;; can custom tabber face
-;; (tabbar-customize-faces-macro
-;;  "gray50" ; foreground
-;;  "gray15" ; background
-;;  "gray60" ; selected foreground
-;;  "gray25" ; selected background
-;;  "gray50" ; unselected foreground
-;;  "gray15" ; unselected background
-;; )
+(tabbar-customize-faces-macro
+ "gray50" ; foreground
+ "gray15" ; background
+ "gray60" ; selected foreground
+ "gray25" ; selected background
+ "gray50" ; unselected foreground
+ "gray15" ; unselected background
+)
 
 ;; * tabber 快捷键设置
 (define-keys global-map
