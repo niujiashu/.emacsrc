@@ -1,5 +1,4 @@
-(deftheme dhyana
-  "Created 2012-06-20.")
+(deftheme dhyana "dhyana theme color")
 
 (custom-theme-set-variables
  'dhyana
@@ -105,7 +104,7 @@
  '(rst-level-6-face ((t (:foreground "#5f7f5f"))))
 
  ;; 激活状态 buffer 的 mode line
- '(mode-line ((t (:foreground "#e0e0e0" :background "#363946"))))
+ '(mode-line ((t (:foreground "#e0e0e0" :background "#363946" :box nil))))
  ;; 非激活状态的 buffer 的 mode line
  '(mode-line-inactive ((t (:foreground "#767986" :background "#363946"))))
  ;; 当前 buffer 名

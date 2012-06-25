@@ -1,7 +1,7 @@
 (custom-set-variables
  ;; 主题 dhyana
  '(custom-enabled-themes '(dhyana))
- '(custom-safe-themes '("7d05c02577c008519e5e197281e34a809dbfd30d59c067fb7baaae5b0f7406cb" default))
+ '(custom-safe-themes (quote ("bf7c796d293fbc2e30bc5ad050c56a74b8fac3da72eeed85b8fa232d24495847" default)))
  ;; 配色方案载入地址
  '(custom-theme-load-path '(custom-theme-directory t "~/.emacsrc/themes"))
  ;; 不显示菜单栏
