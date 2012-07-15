@@ -37,8 +37,9 @@
 ;; el-get
 (setq el-get-dir elget-dir)
 (setq el-get-sources
-  '(
+  '(;; base
     (:name highlight-parentheses 
+     :description "高亮对应的标点"
      :after (progn
               (define-globalized-minor-mode global-highlight-parentheses-mode
                 highlight-parentheses-mode
@@ -46,25 +47,8 @@
                   (highlight-parentheses-mode t)))
               (global-highlight-parentheses-mode t)))
 
-    (:name paredit
-     :after (progn
-              (add-hook 'emacs-lisp-mode-hook
-                      (lambda ()
-                        (paredit-mode t)))))
-
-    ;; (:name undo-tree
-    ;;  :type git
-    ;;  :url "https://github.com/emacsmirror/undo-tree.git"
-    ;;  :prepare (progn
-    ;;             (autoload 'undo-tree-mode "undo-tree.el"
-    ;;               "Undo tree mode; see undo-tree.el for details" t)
-    ;;             (autoload 'global-undo-tree-mode "undo-tree.el"
-    ;;               "Global undo tree mode" t))
-    ;;  :after (progn
-    ;;           (lambda ()
-    ;;             (global-undo-tree-mode))))
-
     (:name buffer-move
+     :description "方便的移动 buffer"
      :after (progn
               (define-keys global-map 
                 `(
@@ -74,12 +58,98 @@
                   ([C-S-right]  buf-move-right)
              ))))
 
+    (:name auto-complete
+     :description "自动补全"
+     :after (progn
+              (global-auto-complete-mode t)
+              (setq-default ac-sources '(ac-source-words-in-same-mode-buffers))
+              (add-hook 'emacs-lisp-mode-hook (lambda () (add-to-list 'ac-sources 'ac-source-symbols)))
+              (add-hook 'auto-complete-mode-hook (lambda () (add-to-list 'ac-sources 'ac-source-filename)))
+              (set-face-background 'ac-candidate-face "lightgray")
+              (set-face-underline 'ac-candidate-face "darkgray")
+              (set-face-background 'ac-selection-face "steelblue") ;; 设置一个更好看的背景颜色
+              ;; (define-key ac-completing-map "\M-n" 'ac-next)       ;; 列表中通过按M-n来向下移动
+              ;; (define-key ac-completing-map "\M-p" 'ac-previous)
+              ;; (define-key ac-mode-map (kbd "M-TAB") 'auto-complete)
+              (setq ac-auto-start 2)
+              (setq ac-dwim t)))
+
     (:name yasnippet
      :after (progn
               (yas/initialize)
               (yas/load-directory (concat rc-dir "snippets"))
               (yas/global-mode 1)))
 
+    ;; front
+    (:name coffee-mode
+     :description "CoffeeScirpt 支持"
+     :after (progn
+              (define-keys coffee-mode-map
+                `(
+                  ("M-R" coffee-compile-region)
+                  ("M-r" coffee-compile-buffer)
+                  ("C-M-r" coffee-repl)
+              ))))
+
+    ;; python
+    (:name pymacs
+     :description "Interface between Emacs Lisp and Python"
+     :after (progn
+              (autoload 'pymacs-apply "pymacs")
+              (autoload 'pymacs-call "pymacs")
+              (autoload 'pymacs-eval "pymacs" nil t)
+              (autoload 'pymacs-exec "pymacs" nil t)
+              (autoload 'pymacs-load "pymacs" nil t)))
+
+    (:name ropemacs
+     :description "minor mode for using rope python refactoring library in emacs"
+     :after (progn
+              (pymacs-load "ropemacs" "rope-")
+              (setq ropemacs-enable-autoimport t)))
+
+    ;; lisp
+    (:name paredit
+     :description "为了对付 Lisp 代码中无处不在的括号"
+     :after (progn
+              (add-hook 'emacs-lisp-mode-hook
+                      (lambda ()
+                        (paredit-mode t)))
+              (add-hook 'lisp-mode-hook
+                      (lambda ()
+                        (paredit-mode t)))))
+
+    (:name slime
+     :description "Superior List Interaction Mode for Emacs"
+     :after (progn
+              (setq inferior-lisp-program "sbcl")
+              (require 'slime-autoloads)
+              (slime-setup)))
+
+    ;; front
+    (:name css-mode :type elpa)
+
+    ;; Ruby
+    (:name ruby-mode
+     :type elpa
+     :load "ruby-mode.el")
+
+    (:name inf-ruby :type elpa)
+
+    (:name ruby-compilation :type elpa)
+
+    (:name textmate
+     :type git
+     :url "git://github.com/defunkt/textmate.el"
+     :load "textmate.el")
+
+    (:name rvm
+     :type git
+     :url "http://github.com/djwhitt/rvm.el.git"
+     :load "rvm.el"
+     :compile ("rvm.el")
+     :after (progn () (rvm-use-default)))
+
+    ;; other
     (:name emacs-w3m
      :after (progn
               (eval-after-load 'w3m
@@ -89,11 +159,17 @@
                    (setq w3m-use-cookies t)
                    (setq w3m-use-title-buffer-name t)))))
 
-    (:name slime
+    (:name undo-tree
+     :type git
+     :url "https://github.com/emacsmirror/undo-tree.git"
+     :prepare (progn
+                (autoload 'undo-tree-mode "undo-tree.el"
+                  "Undo tree mode; see undo-tree.el for details" t)
+                (autoload 'global-undo-tree-mode "undo-tree.el"
+                  "Global undo tree mode" t))
      :after (progn
-              (setq inferior-lisp-program "sbcl")
-              (require 'slime-autoloads)
-              (slime-setup)))
+              (global-undo-tree-mode)
+              (lambda ())))
 
     ;; (:name color-theme
     ;;  :after (progn
@@ -104,15 +180,6 @@
     ;;  :after (progn
     ;;           (defalias 'sb 'sr-speedbar-toggle)))
 
-    (:name coffee-mode
-     :after (progn
-              (define-keys coffee-mode-map
-                `(
-                  ("M-R" coffee-compile-region)
-                  ("M-r" coffee-compile-buffer)
-                  ("C-M-r" coffee-repl)
-              ))))
-    
     ;; (:name multi-web-mode
     ;;  :after (progn
     ;;           (setq mweb-default-major-mode 'html-mode)

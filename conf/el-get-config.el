@@ -15,19 +15,13 @@
       ;; base
       enclose ; 自动闭合对应标点
       htmlize ; 将当前的代码和高亮输出成 HTML
-      package ; 包管理工具，ELPA
       doxymacs ; doxygen 风格的注释
-      yasnippet ; snippet
       switch-window ; 可视化的窗口选择
-      auto-complete ; 自动补全
       auto-complete-yasnippet ; yasnippet 的自动补全
       highlight-parentheses ; 高亮对应的标点
-      buffer-move ; 方便的移动 buffer
       org-mode ; 我还是希望能够用上最新版本的 org-mode
-      ;; color-theme ; 配色方案
       ;; smart-tab ; tab
       ;; folding ; 代码折叠
-      ;; undo-tree ; undo tree
       ;; sudo-save ; 可以使用 su 权限保存
       ;; sr-speedbar ; 让 speedbar 显示在 frame 而不是另外出现一个窗口
       ;; multi-web-mode ; 多个 major mode
@@ -44,37 +38,33 @@
       sass-mode ; Sass 支持
       scss-mode ; Scss 支持
       auto-complete-css ; CSS 补全
-      coffee-mode ; CoffeeScirpt 支持
       js2-mode ; JavaScirpt 支持
       ;; html5 ; HTML5 支持
-      ;; zencoding-mode ; Zencoding 支持
-      ;; css-mode ; CSS 支持
+      zencoding-mode ; Zencoding 支持
 
       ;; Lisp
-      slime ; Superior List Interaction Mode for Emacs
       ac-slime ; slime 补全
       auto-complete-emacs-lisp ; Elisp 补全
-      paredit ; 为了对付 Lisp 代码中无处不在的括号
       clojure-mode ; clojure 支持
       swank-clojure ; 让 slime 支持 clojure
       durendal ; A bucket of Emacs tricks for Clojure
 
       ;; Python
       ;; ipython ; ipython support to python-mode
-      ;; ac-python ; Python 补全
+      ac-python ; Python 补全
       python-mode ; major mode for python
       python-pep8 ; minor mode for running `pep8'
       virtualenv ; Virtualenv for Python
+      pymacs ; Interface between Emacs Lisp and Python
       ropemacs ; minor mode for using rope python refactoring library in emacs
 
       ;; Ruby
-      ;; Enhanced-Ruby-Mode ; for ruby 1.9
+      Enhanced-Ruby-Mode ; for ruby 1.9
       ;; auto-complete-ruby ; auto complete for ruby
       flymake-ruby ; flymake
       rails-el ; for editing Ruby On Rails code
-      ri-emacs ; Ruby ri help inside emacs
-      ruby-block ; Highlight matching block
-      ruby-end ; Emacs minor mode for automatic insertion of end blocks for Ruby
+      ;; ruby-block ; Highlight matching block
+      ;; ruby-end ; Emacs minor mode for automatic insertion of end blocks for Ruby
 
       ;; mark language
       mustache-mode ; Mustache 模板语言支持

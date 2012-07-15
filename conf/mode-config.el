@@ -4,15 +4,22 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;;; 外观
+
+;; 控制是否显示行号和内容容器直接的间隔
+(set-fringe-style t)
+
+;; 控制 tip 是否在 minibuffer 显示（-1 为显示）
+(tooltip-mode t)
+
 ;; 没有 toolbar
-(tool-bar-mode t)
+(tool-bar-mode -1)
 
 ;; 没有 menubar,用 f12 呼出
-(menu-bar-mode nil)
+(menu-bar-mode -1)
 
 ;; 光标不闪，不恍花眼睛
 ;; (daemon-run )
-(blink-cursor-mode nil)
+(blink-cursor-mode -1)
 (transient-mark-mode t)
 
 ;;括号匹配时显示另外一边的括号，而不是烦人的跳到另一个括号。
@@ -23,10 +30,10 @@
 (auto-image-file-mode t)
 
 ;;显示列号
-(setq column-number-mode t)
+(column-number-mode t)
 
 ;; 没有滚动条 24.1
-(set-scroll-bar-mode nil)
+(scroll-bar-mode -1)
 
 ;; number window 给 buffer 上所有窗口编号
 (window-numbering-mode t)
@@ -55,6 +62,9 @@
 (ido-mode t)
 
 ;; 打开就启用 text 模式
-(setq default-major-mode 'text-mode)
+(set-default major-mode 'text-mode)
+
+(delete-selection-mode -1)
+(setq-default indent-tabs-mode nil)
 
 (provide 'mode-config)

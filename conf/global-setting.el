@@ -2,11 +2,15 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; 系统设置
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; 把 /user/loacl/bin 放入执行目录
+(push "/usr/local/bin" exec-path)
+
 ;; change yes or no to y/n
 (fset 'yes-or-no-p 'y-or-n-p)
 
 ;; 设置缩进
 (setq c-basic-offset 4)
+(setq-default tab-width 2)
 
 ;; 使用系统剪切版
 (setq x-select-enable-clipboard t)
