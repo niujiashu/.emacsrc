@@ -129,9 +129,9 @@
     (:name css-mode :type elpa)
 
     ;; Ruby
-    (:name ruby-mode
-     :type elpa
-     :load "ruby-mode.el")
+    ;; (:name ruby-mode
+    ;;  :type elpa
+    ;;  :load "ruby-mode.el")
 
     (:name inf-ruby :type elpa)
 
@@ -170,11 +170,6 @@
      :after (progn
               (global-undo-tree-mode)
               (lambda ())))
-
-    ;; (:name color-theme
-    ;;  :after (progn
-    ;;           (load-file (concat rc-dir "themes/dhyana-theme.el"))
-    ;;           (color-theme-dhyana)))
 
     ;; (:name sr-speedbar
     ;;  :after (progn
@@ -218,5 +213,8 @@
 (add-hook 'lisp-mode-hook #'lambda-mode 1)
 (add-hook 'emacs-lisp-mode-hook #'lambda-mode 1)
 (setq lambda-symbol (string (make-char 'greek-iso8859-7 107)))
+
+;; coffee-mode
+(setq coffee-tab-width 2)
 
 (provide 'plugins-config)

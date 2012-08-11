@@ -49,29 +49,24 @@
       swank-clojure ; 让 slime 支持 clojure
       durendal ; A bucket of Emacs tricks for Clojure
 
-      ;; Python
-      ;; ipython ; ipython support to python-mode
-      ac-python ; Python 补全
-      python-mode ; major mode for python
-      python-pep8 ; minor mode for running `pep8'
-      virtualenv ; Virtualenv for Python
-      pymacs ; Interface between Emacs Lisp and Python
-      ropemacs ; minor mode for using rope python refactoring library in emacs
+      ;; ;; Python
+      ;; ac-python ; Python 补全
+      ;; python-pep8 ; minor mode for running `pep8'
+      ;; virtualenv ; Virtualenv for Python
 
       ;; Ruby
       Enhanced-Ruby-Mode ; for ruby 1.9
-      ;; auto-complete-ruby ; auto complete for ruby
       flymake-ruby ; flymake
       rails-el ; for editing Ruby On Rails code
-      ;; ruby-block ; Highlight matching block
-      ;; ruby-end ; Emacs minor mode for automatic insertion of end blocks for Ruby
+      ruby-block ; Highlight matching block
+      ruby-end ; Emacs minor mode for automatic insertion of end blocks for Ruby
 
-      ;; mark language
+      ;; ;; mark language
       mustache-mode ; Mustache 模板语言支持
       markdown-mode ; Markdown 标记语言支持
       yaml-mode ; Yaml 标记语言支持
 
-      ;; other
+      ;; ;; other
       erc ; irc 客户端
       erc-highlight-nicknames ; irc 客户端的昵称高亮
       ;; gist ; 创建 gist
