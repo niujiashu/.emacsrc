@@ -10,21 +10,6 @@
 (add-to-list 'load-path rc-dir)
 (add-to-list 'load-path conf-dir)
 
-;; ;; 一些小函数
-;; (require 'macro-lisp)
-;; ;; 全局设定
-;; (require 'global-setting)
-;; ;; 插件配置
-;; (require 'plugins-config)
-;; ;; el-get
-;; (require 'el-get-config)
-;; ;; Hook
-;; (require 'hooks-setting)
-;; ;; 快捷键设置
-;; (require 'kbd-setting)
-;; ;; Mode 开关
-;; (require 'mode-config)
-
 (defun load-files (&rest files-lists)
   (dolist (files-list files-lists)
     (let ((root-path (symbol-value (car files-list)))
@@ -32,15 +17,23 @@
       (dolist (name names-list)
         (load (concat root-path name))))))
 
-(load-files 
+(load-files
+ ;; 一些小函数
  `(rc-dir "macro-lisp.el")
  `(conf-dir 
-   "global-setting.el" 
+   ;; 全局设定
+   "global-setting.el"
+   ;; 插件配置
    "plugins-config.el"
-   "el-get-config.el" 
+   ;; el-get
+   "el-get-config.el"
+   ;; Hook
    "hooks-setting.el"
+   ;; 快捷键设置
    "kbd-setting.el"
+   ;; Mode 开关
    "mode-config.el"
+   ;; 界面相关设置
    "face-config.el"
    )
  )

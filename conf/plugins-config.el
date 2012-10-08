@@ -61,24 +61,24 @@
     (:name auto-complete
      :description "自动补全"
      :after (progn
-              (global-auto-complete-mode t)
+              ;; (global-auto-complete-mode t)
               (setq-default ac-sources '(ac-source-words-in-same-mode-buffers))
               (add-hook 'emacs-lisp-mode-hook (lambda () (add-to-list 'ac-sources 'ac-source-symbols)))
               (add-hook 'auto-complete-mode-hook (lambda () (add-to-list 'ac-sources 'ac-source-filename)))
-              (set-face-background 'ac-candidate-face "lightgray")
-              (set-face-underline 'ac-candidate-face "darkgray")
-              (set-face-background 'ac-selection-face "steelblue") ;; 设置一个更好看的背景颜色
+              ;; (set-face-background 'ac-candidate-face "lightgray")
+              ;; (set-face-underline 'ac-candidate-face "darkgray")
+              ;; (set-face-background 'ac-selection-face "steelblue") ;; 设置一个更好看的背景颜色
               ;; (define-key ac-completing-map "\M-n" 'ac-next)       ;; 列表中通过按M-n来向下移动
               ;; (define-key ac-completing-map "\M-p" 'ac-previous)
               ;; (define-key ac-mode-map (kbd "M-TAB") 'auto-complete)
-              (setq ac-auto-start 2)
+              (setq ac-auto-start t)
               (setq ac-dwim t)))
 
-    (:name yasnippet
-     :after (progn
-              (yas/initialize)
-              (yas/load-directory (concat rc-dir "snippets"))
-              (yas/global-mode 1)))
+    ;; (:name yasnippet
+    ;;  :after (progn
+    ;;           (yas/initialize)
+    ;;           (yas/load-directory (concat rc-dir "snippets"))
+    ;;           (yas/global-mode 1)))
 
     ;; front
     (:name coffee-mode
@@ -90,22 +90,6 @@
                   ("M-r" coffee-compile-buffer)
                   ("C-M-r" coffee-repl)
               ))))
-
-    ;; python
-    (:name pymacs
-     :description "Interface between Emacs Lisp and Python"
-     :after (progn
-              (autoload 'pymacs-apply "pymacs")
-              (autoload 'pymacs-call "pymacs")
-              (autoload 'pymacs-eval "pymacs" nil t)
-              (autoload 'pymacs-exec "pymacs" nil t)
-              (autoload 'pymacs-load "pymacs" nil t)))
-
-    (:name ropemacs
-     :description "minor mode for using rope python refactoring library in emacs"
-     :after (progn
-              (pymacs-load "ropemacs" "rope-")
-              (setq ropemacs-enable-autoimport t)))
 
     ;; lisp
     (:name paredit
@@ -137,27 +121,23 @@
 
     (:name ruby-compilation :type elpa)
 
-    (:name textmate
-     :type git
-     :url "git://github.com/defunkt/textmate.el"
-     :load "textmate.el")
-
-    (:name rvm
-     :type git
-     :url "http://github.com/djwhitt/rvm.el.git"
-     :load "rvm.el"
-     :compile ("rvm.el")
-     :after (progn () (rvm-use-default)))
+    ;; (:name rvm
+    ;;  :type git
+    ;;  :url "http://github.com/djwhitt/rvm.el.git"
+    ;;  :load "rvm.el"
+    ;;  :compile ("rvm.el")
+    ;;  :after (progn () (rvm-use-default)))
 
     ;; other
-    (:name emacs-w3m
-     :after (progn
-              (eval-after-load 'w3m
-                '(progn
-                   (setq w3m-default-display-inline-images t)
-                   (setq browse-url-browser-function 'w3m-browse-url)
-                   (setq w3m-use-cookies t)
-                   (setq w3m-use-title-buffer-name t)))))
+    ;; (:name emacs-w3m
+    ;;  :description "w3m 的 Emacs 前端"
+    ;;  :after (progn
+    ;;           (eval-after-load 'w3m
+    ;;             '(progn
+    ;;                (setq w3m-default-display-inline-images t)
+    ;;                (setq browse-url-browser-function 'w3m-browse-url)
+    ;;                (setq w3m-use-cookies t)
+    ;;                (setq w3m-use-title-buffer-name t)))))
 
     (:name undo-tree
      :type git
@@ -172,10 +152,12 @@
               (lambda ())))
 
     ;; (:name sr-speedbar
+    ;;  :description "让 speedbar 显示在 frame 而不是另外出现一个窗口"
     ;;  :after (progn
     ;;           (defalias 'sb 'sr-speedbar-toggle)))
 
     ;; (:name multi-web-mode
+    ;;  :description "多个 major mode"
     ;;  :after (progn
     ;;           (setq mweb-default-major-mode 'html-mode)
     ;;           (setq mweb-tags '(;;(php-mode "<\\?php\\|<\\? \\|<\\?=" "\\?>")
