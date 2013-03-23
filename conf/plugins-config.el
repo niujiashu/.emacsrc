@@ -18,8 +18,6 @@
   'eval-after-load
   ;; 形象化矩形操作区域
   'rect-mark
-  ;; 替换 lambda 关键字为 λ
-  'lambda-mode
 ;  'thing-edit
 ;  'second-sel
 ;  'browse-kill-ring+
@@ -46,7 +44,7 @@
                 (lambda ()
                   (highlight-parentheses-mode t)))
               (global-highlight-parentheses-mode t)))
-
+    ;; 
     (:name buffer-move
      :description "方便的移动 buffer"
      :after (progn
@@ -189,12 +187,6 @@
           (lambda ()
             (ignore-errors
               (wcy-desktop-open-last-opened-files))))
-
-;; lambda-mode
-(add-hook 'python-mode-hook #'lambda-mode 1)
-(add-hook 'lisp-mode-hook #'lambda-mode 1)
-(add-hook 'emacs-lisp-mode-hook #'lambda-mode 1)
-(setq lambda-symbol (string (make-char 'greek-iso8859-7 107)))
 
 ;; coffee-mode
 (setq coffee-tab-width 2)
