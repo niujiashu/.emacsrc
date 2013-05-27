@@ -6,7 +6,7 @@
 ;;;; 外观
 
 ;; 控制是否显示行号和内容容器直接的间隔
-(set-fringe-style t)
+(set-fringe-style 0)
 
 ;; 控制 tip 是否在 minibuffer 显示（-1 为显示）
 (tooltip-mode t)
